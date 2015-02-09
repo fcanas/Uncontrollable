@@ -23,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tab = Tab()
         let nav = Navigator()
         nav.subdots = [
-            Shim(subdots:[Label(text: "Root")], title: "Root"),
-            Shim(subdots:[Label(text: "Middle")], title: "Middle"),
-            Shim(subdots:[Label(text: "Top")], title: "Top"),]
+            Label(text: "Root"),
+            Label(text: "Middle"),
+            Label(text: "Top")]
         nav.title = "Navigator"
         
         tab.subdots = [
-            Shim(subdots:[Label(text: "First")], title: "First"),
-            Shim(subdots:[Label(text: "Second")], title: "Second"),
+            Label(text: "First"),
+            Label(text: "Second"),
             nav
         ]
         var tabController :UITabBarController?

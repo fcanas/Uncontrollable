@@ -2,13 +2,8 @@
 
 import UIKit
 
-class Box<T> {
-    let unbox :T
-    init(_ unbox: T) { self.unbox = unbox }
-}
-
 enum UIKNode {
-    case View(_: UIView)
+    case View(_: UIView, title: String)
     case Controller(_: UIViewController)
 }
 
@@ -19,17 +14,18 @@ protocol Dot {
 
 struct View : Dot {
     var subdots :[Dot] = []
+    var title :String = ""
     func generate() -> UIKNode {
         let view = UIView()
         for node in subdots.map( { $0.generate() } ) {
             switch node {
-            case let UIKNode.View(v):
+            case let UIKNode.View(v, _):
                 view.addSubview(v)
             case UIKNode.Controller(_):
                 break
             }
         }
-        return UIKNode.View(view)
+        return UIKNode.View(view, title: title)
     }
 }
 
@@ -42,38 +38,23 @@ struct Label : Dot {
     func generate() -> UIKNode {
         let label = UILabel()
         label.text = text
+        label.font = UIFont.systemFontOfSize(40)
         label.sizeToFit()
-        return UIKNode.View(label)
-    }
-}
-
-struct Shim : Dot {
-    var subdots :[Dot]
-    var title: String = "Shim"
-    func generate() -> UIKNode {
-        let vc = UIViewController()
-        vc.title = title
-        vc.view.backgroundColor = UIColor.whiteColor()
-        for node in subdots.map( { $0.generate() } ) {
-            switch node {
-            case let UIKNode.View(v):
-                vc.view.addSubview(v)
-            case UIKNode.Controller(_):
-                break
-            }
-        }
-        return UIKNode.Controller(vc)
+        label.backgroundColor = UIColor.whiteColor()
+        return UIKNode.View(label, title: text)
     }
 }
 
 class Tab : Dot {
     var subdots :[Dot] = []
+    var title :String? = "Tab"
     func generate() -> UIKNode {
         let tab = UITabBarController()
         for node in subdots.map( { $0.generate() } ) {
             switch node {
-            case UIKNode.View(_):
-                break
+            case let UIKNode.View(v, title):
+                let shim = controllerWithView(v, title)
+                tab.addChildViewController(shim)
             case let UIKNode.Controller(c):
                 tab.addChildViewController(c)
             }
@@ -82,16 +63,26 @@ class Tab : Dot {
     }
 }
 
+func controllerWithView(view: UIView, title: String, backgroundColor: UIColor = UIColor.whiteColor()) -> UIViewController {
+    let controller = UIViewController()
+    controller.view.addSubview(view)
+    controller.title = title
+    controller.view.backgroundColor = backgroundColor
+    return controller
+}
+
 class Navigator : Dot {
     var subdots :[Dot] = []
-    var title = "Nav"
+    var title :String = "Nav"
     func generate() -> UIKNode {
         let nav = UINavigationController()
+        nav.view.backgroundColor = UIColor.whiteColor()
         nav.title = title
         for node in subdots.map( { $0.generate() } ) {
             switch node {
-            case UIKNode.View(_):
-                break
+            case let UIKNode.View(v, title):
+                let shim = controllerWithView(v, title)
+                nav.pushViewController(shim, animated: false)
             case let UIKNode.Controller(c):
                 nav.pushViewController(c, animated: false)
             }
