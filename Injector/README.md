@@ -18,7 +18,8 @@ using a label.
 In Elemental, view controllers are brought into the tree along with views; both are represented as 
 cases of nodes (which for the case of this experiment are called `Dots`).
 
-A `UITabBarController` is represented as a `Tab` node into which other nodes can be embedded.
+A `UITabBarController` is represented as a `Tab` node. A `UINavigationController` is a `Navigator` node.
+Each of these representes a node into which other nodes can be embedded.
 
 This experiment only exposes the layout and interaction intrinsic to the nodes themselves and how
 they relate to subnodes.

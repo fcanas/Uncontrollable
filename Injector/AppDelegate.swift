@@ -4,10 +4,10 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
@@ -21,10 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Dots
         let tab = Tab()
+        let nav = Navigator()
+        nav.subdots = [
+            Shim(subdots:[Label(text: "Root")], title: "Root"),
+            Shim(subdots:[Label(text: "Middle")], title: "Middle"),
+            Shim(subdots:[Label(text: "Top")], title: "Top"),]
+        nav.title = "Navigator"
+        
         tab.subdots = [
             Shim(subdots:[Label(text: "First")], title: "First"),
             Shim(subdots:[Label(text: "Second")], title: "Second"),
-            Shim(subdots:[Label(text: "Third")], title: "Third")
+            nav
         ]
         var tabController :UITabBarController?
         switch tab.generate() {

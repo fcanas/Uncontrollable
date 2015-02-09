@@ -66,8 +66,7 @@ struct Shim : Dot {
     }
 }
 
-
-class Tab : UITabBarController, Dot {
+class Tab : Dot {
     var subdots :[Dot] = []
     func generate() -> UIKNode {
         let tab = UITabBarController()
@@ -80,5 +79,23 @@ class Tab : UITabBarController, Dot {
             }
         }
         return UIKNode.Controller(tab)
+    }
+}
+
+class Navigator : Dot {
+    var subdots :[Dot] = []
+    var title = "Nav"
+    func generate() -> UIKNode {
+        let nav = UINavigationController()
+        nav.title = title
+        for node in subdots.map( { $0.generate() } ) {
+            switch node {
+            case UIKNode.View(_):
+                break
+            case let UIKNode.Controller(c):
+                nav.pushViewController(c, animated: false)
+            }
+        }
+        return UIKNode.Controller(nav)
     }
 }
