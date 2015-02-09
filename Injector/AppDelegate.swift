@@ -1,10 +1,4 @@
-//
-//  AppDelegate.swift
-//  Injector
-//
-//  Created by Fabian Canas on 2/8/15.
 //  Copyright (c) 2015 Fabián Cañas. All rights reserved.
-//
 
 import UIKit
 
@@ -17,15 +11,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let hostVC = HostViewController()
-        window?.rootViewController = hostVC
-        
+        // Host
+        let hostVC = NodeHost()
         let node = Node.View(nodes: [
             Node.Label(text: "there!", backgroundColor: UIColor.clearColor(), textColor: UIColor.greenColor()),
             Node.Label(text: "Hi", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.magentaColor())],
             backgroundColor: UIColor.darkGrayColor())
-        
         hostVC.node = node
+        
+        // Dots
+        let tab = Tab()
+        tab.subdots = [
+            Shim(subdots:[Label(text: "First")], title: "First"),
+            Shim(subdots:[Label(text: "Second")], title: "Second"),
+            Shim(subdots:[Label(text: "Third")], title: "Third")
+        ]
+        var tabController :UITabBarController?
+        switch tab.generate() {
+        case let .Controller(t):
+            t.addChildViewController(hostVC)
+            window?.rootViewController = t
+        case .View(_):
+            window?.rootViewController = hostVC
+        }
         
         window?.makeKeyAndVisible()
         return true

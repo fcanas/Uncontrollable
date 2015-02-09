@@ -2,9 +2,11 @@
 
 import UIKit
 
-class HostViewController: UIViewController {
+class NodeHost: UIViewController {
     var node: Node? {
         didSet {
+            title = "Hosting"
+            
             for v in self.view.subviews {
                 v.removeFromSuperview()
             }
