@@ -12,6 +12,7 @@
 		E7CAF7621A8815F600C3B92D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7CAF7601A8815F600C3B92D /* LaunchScreen.xib */; };
 		E7CAF76E1A8815F600C3B92D /* InjectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAF76D1A8815F600C3B92D /* InjectorTests.swift */; };
 		E7CAF7781A88184F00C3B92D /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAF7771A88184F00C3B92D /* HostViewController.swift */; };
+		E7CAF77B1A88404900C3B92D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E7CAF77A1A88404900C3B92D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,8 @@
 		E7CAF76C1A8815F600C3B92D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7CAF76D1A8815F600C3B92D /* InjectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectorTests.swift; sourceTree = "<group>"; };
 		E7CAF7771A88184F00C3B92D /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		E7CAF7791A88401B00C3B92D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E7CAF77A1A88404900C3B92D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 		E7CAF7491A8815F600C3B92D = {
 			isa = PBXGroup;
 			children = (
+				E7CAF7791A88401B00C3B92D /* README.md */,
 				E7CAF7541A8815F600C3B92D /* Injector */,
 				E7CAF76A1A8815F600C3B92D /* InjectorTests */,
 				E7CAF7531A8815F600C3B92D /* Products */,
@@ -80,6 +84,7 @@
 				E7CAF7601A8815F600C3B92D /* LaunchScreen.xib */,
 				E7CAF7551A8815F600C3B92D /* Supporting Files */,
 				E7CAF7771A88184F00C3B92D /* HostViewController.swift */,
+				E7CAF77A1A88404900C3B92D /* README.md */,
 			);
 			path = Injector;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7CAF77B1A88404900C3B92D /* README.md in Sources */,
 				E7CAF7581A8815F600C3B92D /* AppDelegate.swift in Sources */,
 				E7CAF7781A88184F00C3B92D /* HostViewController.swift in Sources */,
 			);
