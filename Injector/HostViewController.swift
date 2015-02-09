@@ -3,7 +3,6 @@
 import UIKit
 
 class HostViewController: UIViewController {
-    
     var node: Node? {
         didSet {
             for v in self.view.subviews {
@@ -14,13 +13,6 @@ class HostViewController: UIViewController {
                 view.addSubview(newView)
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        node = Node.View(nodes: [
-            Node.Label(text: "Hi", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.magentaColor()),
-            Node.Label(text: "there!", backgroundColor: UIColor.darkGrayColor(), textColor: UIColor.greenColor())], backgroundColor: UIColor.darkGrayColor())
     }
 }
 
@@ -41,9 +33,7 @@ func viewForNode(node: Node) -> UIView {
     case let Node.View(nodes, backgroundColor) :
         let view = UIView()
         view.backgroundColor = backgroundColor
-        for v in nodes.map((viewForNode)) {
-            view.addSubview(v)
-        }
+        for v in nodes.map((viewForNode)) { view.addSubview(v) }
         view.sizeToFit()
         return view
     }

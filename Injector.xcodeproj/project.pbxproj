@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E7CAF7581A8815F600C3B92D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAF7571A8815F600C3B92D /* AppDelegate.swift */; };
-		E7CAF75A1A8815F600C3B92D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAF7591A8815F600C3B92D /* ViewController.swift */; };
-		E7CAF75D1A8815F600C3B92D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7CAF75B1A8815F600C3B92D /* Main.storyboard */; };
 		E7CAF75F1A8815F600C3B92D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7CAF75E1A8815F600C3B92D /* Images.xcassets */; };
 		E7CAF7621A8815F600C3B92D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7CAF7601A8815F600C3B92D /* LaunchScreen.xib */; };
 		E7CAF76E1A8815F600C3B92D /* InjectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAF76D1A8815F600C3B92D /* InjectorTests.swift */; };
@@ -30,8 +28,6 @@
 		E7CAF7521A8815F600C3B92D /* Injector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Injector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CAF7561A8815F600C3B92D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7CAF7571A8815F600C3B92D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E7CAF7591A8815F600C3B92D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E7CAF75C1A8815F600C3B92D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E7CAF75E1A8815F600C3B92D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E7CAF7611A8815F600C3B92D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E7CAF7671A8815F600C3B92D /* InjectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InjectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,8 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				E7CAF7571A8815F600C3B92D /* AppDelegate.swift */,
-				E7CAF7591A8815F600C3B92D /* ViewController.swift */,
-				E7CAF75B1A8815F600C3B92D /* Main.storyboard */,
 				E7CAF75E1A8815F600C3B92D /* Images.xcassets */,
 				E7CAF7601A8815F600C3B92D /* LaunchScreen.xib */,
 				E7CAF7551A8815F600C3B92D /* Supporting Files */,
@@ -195,7 +189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7CAF75D1A8815F600C3B92D /* Main.storyboard in Resources */,
 				E7CAF7621A8815F600C3B92D /* LaunchScreen.xib in Resources */,
 				E7CAF75F1A8815F600C3B92D /* Images.xcassets in Resources */,
 			);
@@ -215,7 +208,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7CAF75A1A8815F600C3B92D /* ViewController.swift in Sources */,
 				E7CAF7581A8815F600C3B92D /* AppDelegate.swift in Sources */,
 				E7CAF7781A88184F00C3B92D /* HostViewController.swift in Sources */,
 			);
@@ -240,14 +232,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E7CAF75B1A8815F600C3B92D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E7CAF75C1A8815F600C3B92D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E7CAF7601A8815F600C3B92D /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -409,6 +393,7 @@
 				E7CAF7731A8815F600C3B92D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E7CAF7741A8815F600C3B92D /* Build configuration list for PBXNativeTarget "InjectorTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +402,7 @@
 				E7CAF7761A8815F600C3B92D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
