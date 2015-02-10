@@ -3,7 +3,7 @@
 import UIKit
 
 class NodeHost: UIViewController {
-    var node: Node? {
+    var node: xNode? {
         didSet {
             title = "Hosting"
             
@@ -18,21 +18,21 @@ class NodeHost: UIViewController {
     }
 }
 
-enum Node {
+enum xNode {
     case Label(text: String, backgroundColor: UIColor, textColor: UIColor)
-    case View(nodes: [Node], backgroundColor: UIColor)
+    case View(nodes: [xNode], backgroundColor: UIColor)
 }
 
-func viewForNode(node: Node) -> UIView {
+func viewForNode(node: xNode) -> UIView {
     switch node {
-    case let Node.Label(text, backgroundColor, textColor):
+    case let xNode.Label(text, backgroundColor, textColor):
         let label = UILabel()
         label.text = text
         label.textColor = textColor
         label.backgroundColor = backgroundColor
         label.sizeToFit()
         return label
-    case let Node.View(nodes, backgroundColor) :
+    case let xNode.View(nodes, backgroundColor) :
         let view = UIView()
         view.backgroundColor = backgroundColor
         for v in nodes.map((viewForNode)) { view.addSubview(v) }

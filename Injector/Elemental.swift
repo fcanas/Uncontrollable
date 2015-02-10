@@ -7,17 +7,17 @@ enum UIKNode {
     case Controller(_: UIViewController)
 }
 
-protocol Dot {
-    var subdots :[Dot] { get }
+protocol Node {
+    var subnodes :[Node] { get }
     func generate() -> UIKNode
 }
 
-struct View : Dot {
-    var subdots :[Dot] = []
+struct View : Node {
+    var subnodes :[Node] = []
     var title :String = ""
     func generate() -> UIKNode {
         let view = UIView()
-        for node in subdots.map( { $0.generate() } ) {
+        for node in subnodes.map( { $0.generate() } ) {
             switch node {
             case let UIKNode.View(v, _):
                 view.addSubview(v)
@@ -29,8 +29,8 @@ struct View : Dot {
     }
 }
 
-struct Label : Dot {
-    let subdots :[Dot] = []
+struct Label : Node {
+    let subnodes :[Node] = []
     var text :String
     init(text: String) {
         self.text = text
@@ -45,12 +45,12 @@ struct Label : Dot {
     }
 }
 
-class Tab : Dot {
-    var subdots :[Dot] = []
+class Tab : Node {
+    var subnodes :[Node] = []
     var title :String? = "Tab"
     func generate() -> UIKNode {
         let tab = UITabBarController()
-        for node in subdots.map( { $0.generate() } ) {
+        for node in subnodes.map( { $0.generate() } ) {
             switch node {
             case let UIKNode.View(v, title):
                 let shim = controllerWithView(v, title)
@@ -71,14 +71,14 @@ func controllerWithView(view: UIView, title: String, backgroundColor: UIColor = 
     return controller
 }
 
-class Navigator : Dot {
-    var subdots :[Dot] = []
+class Navigator : Node {
+    var subnodes :[Node] = []
     var title :String = "Nav"
     func generate() -> UIKNode {
         let nav = UINavigationController()
         nav.view.backgroundColor = UIColor.whiteColor()
         nav.title = title
-        for node in subdots.map( { $0.generate() } ) {
+        for node in subnodes.map( { $0.generate() } ) {
             switch node {
             case let UIKNode.View(v, title):
                 let shim = controllerWithView(v, title)

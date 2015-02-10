@@ -13,27 +13,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Host
         let hostVC = NodeHost()
-        let node = Node.View(nodes: [
-            Node.Label(text: "there!", backgroundColor: UIColor.clearColor(), textColor: UIColor.greenColor()),
-            Node.Label(text: "Hi", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.magentaColor())],
+        let node = xNode.View(nodes: [
+            xNode.Label(text: "there!", backgroundColor: UIColor.clearColor(), textColor: UIColor.greenColor()),
+            xNode.Label(text: "Hi", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.magentaColor())],
             backgroundColor: UIColor.darkGrayColor())
         hostVC.node = node
         
         // Dots
         let tab = Tab()
         let nav = Navigator()
-        nav.subdots = [
+        nav.subnodes = [
             Label(text: "Root"),
             Label(text: "Middle"),
             Label(text: "Top")]
         nav.title = "Navigator"
         
-        tab.subdots = [
+        tab.subnodes = [
             Label(text: "First"),
             Label(text: "Second"),
             nav
         ]
         var tabController :UITabBarController?
+        
         switch tab.generate() {
         case let .Controller(t):
             t.addChildViewController(hostVC)
