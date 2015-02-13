@@ -1,8 +1,6 @@
 //  Copyright (c) 2015 Fabián Cañas. All rights reserved.
 
 import UIKit
-import Argo
-import Runes
 
 public final class Box<T> {
     let unbox: T
@@ -105,12 +103,6 @@ class Navigator : Node {
     }
 }
 
-struct RawNode {
-    var type: String
-    var properties: JSONValue?
-    var subnodes: [RawNode]?
-}
-
 extension RawNode {
     func toNode() -> Node {
         let typeMap: [String : NodeType] = [
@@ -127,26 +119,15 @@ extension RawNode {
         case .Navigator:
             node = Navigator()
         case .Label:
-            node = Label(text: "arbitrary")
+            node = Label(text: properties?["text"] as? String ?? "default")
         case .View:
             node = View()
         }
         
         if let sn = subnodes {
-            node.subnodes = sn.map( {r in return r.toNode() } )
+            node.subnodes = sn.map( {r in return (r as? RawNode)!.toNode() } )
         }
         
         return node
     }
 }
-
-extension RawNode: JSONDecodable {
-    static func create(type :String)(properties: JSONValue?)(subnodes: [RawNode]?) -> RawNode {
-        return RawNode(type: type, properties: properties, subnodes: subnodes)
-    }
-    
-    static func decode(j: JSONValue) -> RawNode? {
-        return RawNode.create(j["type"]!.value()!)(properties: j["properties"])(subnodes: j["subnodes"]?.value())
-    }
-}
-

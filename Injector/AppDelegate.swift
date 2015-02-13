@@ -2,7 +2,6 @@
 
 import UIKit
 import JavaScriptCore
-import Argo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,12 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         context.evaluateScript(app)
         let originAppTree = context.objectForKeyedSubscript("appTree").toDictionary()
         
-        let jsAppTree = JSONValue.parse(originAppTree)
-        let rawAppTree = RawNode.decode(jsAppTree)
+        let rawTree = RawNode()
+        rawTree.setValuesForKeysWithDictionary(originAppTree)
         
-        println(rawAppTree)
-        
-        let tab = rawAppTree!.toNode()
+        let tab = rawTree.toNode()
         
         // Host
         let hostVC = NodeHost()
@@ -33,21 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             xNode.Label(text: "Hi", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.magentaColor())],
             backgroundColor: UIColor.darkGrayColor())
         hostVC.node = node
-//
-//        // Dots
-//        let tab = Tab()
-//        let nav = Navigator()
-//        nav.subnodes = [
-//            Label(text: "Root"),
-//            Label(text: "Middle"),
-//            Label(text: "Top")]
-//        nav.title = "Navigator"
-//        
-//        tab.subnodes = [
-//            Label(text: "First"),
-//            Label(text: "Second"),
-//            nav
-//        ]
+        
         var tabController :UITabBarController?
         
         switch tab.generate() {

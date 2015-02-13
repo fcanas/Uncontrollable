@@ -5,8 +5,8 @@ var appTree = {
                 {'type':'Label', 'properties': {'text': 'Second'}},
                 {'type':'Navigator','properties': {'title': 'NavNav'},
                 'subnodes':[
-                            {'type':'Label', 'text': 'Root'},
-                            {'type':'Label', 'text': 'Middle'},
-                            {'type':'Label', 'text': 'Top'}
+                            {'type':'Label', 'properties': {'text': 'Root'}},
+                            {'type':'Label', 'properties': {'text': 'Middle'}},
+                            {'type':'Label', 'properties': {'text': 'Top'}}
                             ]}
                 ]};

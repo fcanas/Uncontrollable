@@ -1,1 +1,1 @@
-github "thoughtbot/Argo" == 0.3.2
+github "fcanas/OHMKit" "carthage"
