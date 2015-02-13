@@ -23,22 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tab = rawTree.toNode()
         
-        // Host
-        let hostVC = NodeHost()
-        let node = xNode.View(nodes: [
-            xNode.Label(text: "there!", backgroundColor: UIColor.clearColor(), textColor: UIColor.greenColor()),
-            xNode.Label(text: "Hi", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.magentaColor())],
-            backgroundColor: UIColor.darkGrayColor())
-        hostVC.node = node
-        
-        var tabController :UITabBarController?
-        
         switch tab.generate() {
         case let .Controller(t):
-            t.addChildViewController(hostVC)
             window?.rootViewController = t
-        case .View(_):
-            window?.rootViewController = hostVC
+        case let .View(v, s):
+            let c = UIViewController()
+            c.view = v
+            window?.rootViewController = c
         }
         
         window?.makeKeyAndVisible()
