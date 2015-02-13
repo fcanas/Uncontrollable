@@ -1,14 +1,28 @@
 //  Copyright (c) 2015 Fabián Cañas. All rights reserved.
 
 import UIKit
+import Argo
+import Runes
+
+public final class Box<T> {
+    let unbox: T
+    init(_ v: T) { unbox = v }
+}
 
 enum UIKNode {
     case View(_: UIView, title: String)
     case Controller(_: UIViewController)
 }
 
+enum NodeType {
+    case View
+    case Label
+    case Tab
+    case Navigator
+}
+
 protocol Node {
-    var subnodes :[Node] { get }
+    var subnodes :[Node] { get set }
     func generate() -> UIKNode
 }
 
@@ -30,7 +44,7 @@ struct View : Node {
 }
 
 struct Label : Node {
-    let subnodes :[Node] = []
+    var subnodes :[Node] = []
     var text :String
     init(text: String) {
         self.text = text
@@ -90,3 +104,49 @@ class Navigator : Node {
         return UIKNode.Controller(nav)
     }
 }
+
+struct RawNode {
+    var type: String
+    var properties: JSONValue?
+    var subnodes: [RawNode]?
+}
+
+extension RawNode {
+    func toNode() -> Node {
+        let typeMap: [String : NodeType] = [
+            "Tab":.Tab,
+            "Navigator":.Navigator,
+            "Label":.Label,
+            "View":.View
+        ]
+        var node :Node!
+        
+        switch typeMap[type]! {
+        case .Tab:
+            node = Tab()
+        case .Navigator:
+            node = Navigator()
+        case .Label:
+            node = Label(text: "arbitrary")
+        case .View:
+            node = View()
+        }
+        
+        if let sn = subnodes {
+            node.subnodes = sn.map( {r in return r.toNode() } )
+        }
+        
+        return node
+    }
+}
+
+extension RawNode: JSONDecodable {
+    static func create(type :String)(properties: JSONValue?)(subnodes: [RawNode]?) -> RawNode {
+        return RawNode(type: type, properties: properties, subnodes: subnodes)
+    }
+    
+    static func decode(j: JSONValue) -> RawNode? {
+        return RawNode.create(j["type"]!.value()!)(properties: j["properties"])(subnodes: j["subnodes"]?.value())
+    }
+}
+
